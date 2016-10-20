@@ -16,9 +16,9 @@
         </div>
 
       </div>
-
     </div>
 
+{% if not request.user.is_authenticated %}
     <div class="col-md-4">
 
       <div class="panel panel-default">
@@ -34,6 +34,8 @@
         </div>
       </div>
     </div>
+{% endif %}
+
   </div>
 
 {% endblock %}
