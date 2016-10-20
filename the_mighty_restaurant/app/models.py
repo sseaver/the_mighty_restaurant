@@ -24,7 +24,7 @@ class Menu(models.Model):
 
 
 class Order(models.Model):
-    item = models.OneToManyField(Menu)
+    item = models.ForeignKey(Menu)
     notes = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
