@@ -1,12 +1,10 @@
 from django.db import models
-
 # Create your models here.
 
 ACCESS_LEVELS = [
     ('s', 'Server'),
     ('o', 'Owner'),
     ('c', 'Chef'),
-    ('g', 'Guest')
 ]
 
 
