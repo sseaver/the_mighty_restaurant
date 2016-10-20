@@ -1,0 +1,19 @@
+The Mighty Restaurant
+
+Classes:
+
+- Profile
+    - access levels
+        - Owner
+        - Server
+        - Chef
+        - *(Customer)
+    - Methods
+
+- Table
+    - Orders
+    - FK to menu
+
+- Menu Items
+    - food/drinks
+    - cost
