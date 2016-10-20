@@ -1,22 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+
   <div class="row">
-    <div class="column-md-8">
-      <p>
-        Owner notes to employees <br>
-        Weekly Special from Chef
-      </p>
+    <div class="col-md-8">
+
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="panel-title">Owner Notes to Employees</h3>
+        </div>
+
+        <div class="panel-body">
+          BlahBlahBlah
+        </div>
+
+      </div>
+
     </div>
-    <div class="column-md-4">
-      <form class="" action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-      <input type="submit" name="" value="Login">
-      </form>
+
+    <div class="col-md-4">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">LOGIN</h3>
+        </div>
+        <div class="panel-body">
+          <form class="" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ login_form.as_p }}
+          <input type="submit" name="" value="Login">
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
 {% endblock %}
