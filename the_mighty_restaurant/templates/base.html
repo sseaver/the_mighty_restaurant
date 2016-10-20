@@ -3,13 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>MightyRestaraunt</title>
+    <style media="screen">
+      body {
+        color: orange; background-color:#00009A;
+      }
+    </style>
   </head>
-  <body>
+  <body style="font-family:sans-serif;">
 <a href="{% url 'index_view' %}">Home</a>
 <a href="{% url 'user_create_view' %}">Create User</a>
 
 {% if not request.user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'login' %}>"Log out</a>
+<a href="{% url 'logout' %}?next={% url 'index_view' %}>"Log out</a>
 {% endif %}
 
 {% block content %}
