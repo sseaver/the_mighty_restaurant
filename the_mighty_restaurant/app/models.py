@@ -42,6 +42,7 @@ class Menu(models.Model):
 
 
 class Order(models.Model):
+    server = models.ForeignKey("auth.User")
     item = models.ForeignKey(Menu)
     notes = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

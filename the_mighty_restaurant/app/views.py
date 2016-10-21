@@ -21,7 +21,7 @@ class IndexView(TemplateView):
 class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = "/"
+    success_url = "profile_view"
 
 
 class ProfileView(UpdateView):
@@ -31,3 +31,14 @@ class ProfileView(UpdateView):
 
     def get_object(self):
         return Profile.objects.get(user=self.request.user)
+
+
+class OrderCreateView(CreateView):
+    model = Table
+    success_url = "/"
+    fields = ("order", "table_number", "seat")
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.server = self.request.user
+        return super().form_valid(form)
