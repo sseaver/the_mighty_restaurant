@@ -38,17 +38,12 @@ def create_user_profile(**kwargs):
 class Menu(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
-    drink = models.CharField(max_length=20)
 
 
 class Order(models.Model):
     server = models.ForeignKey("auth.User")
-    item = models.ForeignKey(Menu)
+    item = models.ManyToManyField(Menu)
+    drink = models.CharField(max_length=20)
     notes = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-
-
-class Table(models.Model):
-    order = models.ForeignKey(Order)
     table_number = models.IntegerField()
-    seat = models.CharField(max_length=2)
