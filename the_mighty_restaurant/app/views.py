@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app.models import Menu, Order, Profile
+from app.models import MenuItem, Order, Profile
 from django.views.generic import CreateView, TemplateView, ListView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
@@ -34,12 +34,12 @@ class ProfileView(UpdateView):
 
 
 class MenuView(ListView):
-    model = Menu
+    model = MenuItem
     template_name = "menu.html"
 
 
 class MenuItemCreateView(CreateView):
-    model = Menu
+    model = MenuItem
     success_url = "/"
     fields = ("name", "description")
 
@@ -50,7 +50,7 @@ class MenuItemCreateView(CreateView):
 
 
 class MenuItemUpdateView(UpdateView):
-    model = Menu
+    model = MenuItem
     success_url = reverse_lazy("menu_view")
     fields = ("name", "description")
 

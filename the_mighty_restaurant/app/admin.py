@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Profile, Menu, Order
+from app.models import Profile, MenuItem, Order
 # Register your models here.
 
-admin.site.register([Profile, Menu, Order])
+admin.site.register([Profile, MenuItem, Order])
