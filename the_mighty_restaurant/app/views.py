@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from app.models import Menu, Order, Profile, Table
 from django.views.generic import CreateView, TemplateView
+from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -20,3 +22,12 @@ class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
     success_url = "/"
+
+
+class ProfileView(UpdateView):
+    template_name = "profile.html"
+    fields = ("access_level",)
+    success_url = reverse_lazy("profile_view")
+
+    def get_object(self):
+        return Profile.objects.get(user=self.request.user)
