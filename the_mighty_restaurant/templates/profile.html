@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
   <form class="" action="" method="post">
   {% csrf_token %}
      {{ form.as_p }}
      <input type="submit"  value="Submit">
   </form>
 
-
+<a href="{% url 'order_create_view' %}">Create Order</a>
 
 {% endblock %}
