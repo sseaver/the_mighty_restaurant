@@ -44,10 +44,16 @@ class MenuItemCreateView(CreateView):
         return super().form_valid(form)
 
 
+class MenuItemUpdateView(UpdateView):
+    model = Menu
+    success_url = "/"
+    fields = ("name", "description")
+
+
 class OrderCreateView(CreateView):
     model = Order
     success_url = "/"
-    fields = ("order", "table_number", "seat")
+    fields = ("item", "table_number", "drink", "notes")
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -58,4 +64,4 @@ class OrderCreateView(CreateView):
 class OrderUpdateView(UpdateView):
     model = Order
     success_url = "/"
-    fields = ("order", "table_number", "seat")
+    fields = ("item", "table_number", "drink", "notes")
