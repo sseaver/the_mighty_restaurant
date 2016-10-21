@@ -1,4 +1,6 @@
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 # Create your models here.
 
 ACCESS_LEVELS = [
@@ -15,6 +17,22 @@ class Profile(models.Model):
     @property
     def is_owner(self):
         return self.access_level == 'o'
+
+    @property
+    def is_chef(self):
+        return self.access_level == 'c'
+
+    @property
+    def is_server(self):
+        return self.access_level == 's'
+
+
+@receiver(post_save, sender="auth.User")
+def create_user_profile(**kwargs):
+    created = kwargs.get('created')
+    instance = kwargs.get('instance')
+    if created:
+        Profile.objects.create(user=instance)
 
 
 class Menu(models.Model):
