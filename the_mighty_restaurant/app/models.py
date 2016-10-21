@@ -38,6 +38,7 @@ def create_user_profile(**kwargs):
 class Menu(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
+    price = models.FloatField()
 
 
 class Order(models.Model):
