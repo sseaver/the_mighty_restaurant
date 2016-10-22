@@ -103,8 +103,18 @@ class OwnerView(ListView):
 
 class TableView(ListView):
     model = Table
+    template_name = "tables.html"
+
+    def get_queryset(self):
+        return Table.objects.filter(paid=False)
+
+    def get_context_data(self, **kwargs):
+        context = super(TableView, self).get_context_data(**kwargs)
+        context['order'] = Order.objects.all()
+        return context
 
 
 class TableCreateView(CreateView):
     model = Table
     fields = ("table_number",)
+    success_url = "/create_order/"
