@@ -101,10 +101,10 @@ class OwnerView(ListView):
     model = Order
 
 
+class TableView(ListView):
+    model = Table
+
+
 class TableCreateView(CreateView):
     model = Table
     fields = ("table_number",)
-
-
-class TableView(ListView):
-    model = Table
