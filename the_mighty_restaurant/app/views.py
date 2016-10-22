@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app.models import MenuItem, Order, Profile
+from app.models import MenuItem, Order, Profile, Table
 from app.forms import ChefOrderForm, ServerOrderForm
 from django.views.generic import CreateView, TemplateView, ListView
 from django.views.generic.edit import UpdateView, DeleteView
@@ -91,3 +91,7 @@ class OrderUpdateView(UpdateView):
 
 class OwnerView(ListView):
     model = Order
+
+
+class TableView(CreateView):
+    model = Table

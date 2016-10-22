@@ -11,5 +11,4 @@ class ChefOrderForm(forms.ModelForm):
 class ServerOrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ("item", "table_number", "drink", "notes", "paid")
-        items = forms.SelectMultiple(choices=("item"))
+        fields = ("item", "table_number", "drink", "notes")
