@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^update_order(?P<pk>\d+)/$', OrderUpdateView.as_view(), name="order_update_view"),
     url(r'^menu/$', MenuView.as_view(), name="menu_view"),
     url(r'^menu_item/create/$', MenuItemCreateView.as_view(), name="menu_item_create_view"),
-    url(r'^menu_item(?P<pk>\d+)/update/$', MenuItemUpdateView.as_view(), name="menu_item_update_view"),
-    url(r'^menu_item(?P<pk>\d+)/delete/$', MenuItemDeleteView.as_view(), name="menu_item_delete_view")
+    url(r'^menu_item/(?P<pk>\d+)/update/$', MenuItemUpdateView.as_view(), name="menu_item_update_view"),
+    url(r'^menu_item/(?P<pk>\d+)/delete/$', MenuItemDeleteView.as_view(), name="menu_item_delete_view")
 
 ]
