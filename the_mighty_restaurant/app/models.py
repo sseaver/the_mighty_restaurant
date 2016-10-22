@@ -14,6 +14,9 @@ class Profile(models.Model):
     user = models.OneToOneField('auth.User')
     access_level = models.CharField(max_length=1, choices=ACCESS_LEVELS)
 
+    def __str__(self):
+        return self.access_level
+
     @property
     def is_owner(self):
         return self.access_level == 'o'

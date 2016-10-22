@@ -38,7 +38,8 @@
 
 <h1>The Mighty Restaurant</h1>
 {% if request.user.is_authenticated %}
-<h3>{{ request.user }}</h3>
+<h3>{{ request.user }}:  {{ request.user.profile }}</h3>
+
 {% endif %}
 {% block content %}
 {% endblock %}

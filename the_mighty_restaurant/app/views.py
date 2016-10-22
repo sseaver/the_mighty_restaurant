@@ -87,3 +87,7 @@ class OrderUpdateView(UpdateView):
     model = Order
     success_url = reverse_lazy("order_view")
     form_class = ChefOrderForm
+
+
+class OwnerView(ListView):
+    model = Order
