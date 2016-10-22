@@ -72,6 +72,9 @@ class Table(models.Model):
     paid = models.BooleanField(default=False)
     table_number = models.CharField(max_length=2, choices=TABLE_NUMBERS)
 
+    def __str__(self):
+        return self.table_number
+
     @property
     def is_paid(self):
         return self.paid
@@ -85,6 +88,9 @@ class Order(models.Model):
     notes = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.item
 
     def is_recent(self):
         hrs24 = datetime.now() - timedelta(days=1)

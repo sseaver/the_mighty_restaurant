@@ -76,7 +76,8 @@ class OrderView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(OrderView, self).get_context_data(**kwargs)
-        context['table'] = Table.objects.filter(self)
+        context['table'] = Table.objects.all()
+        return context
 
 
 class OrderCreateView(CreateView):
@@ -100,6 +101,10 @@ class OwnerView(ListView):
     model = Order
 
 
-class TableView(CreateView):
+class TableCreateView(CreateView):
     model = Table
     fields = ("table_number",)
+
+
+class TableView(ListView):
+    model = Table
