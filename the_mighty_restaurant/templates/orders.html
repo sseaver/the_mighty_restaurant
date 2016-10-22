@@ -27,8 +27,16 @@
         <div class="panel-body">
           {{ order.table_number }}<br>
           {{ order.notes }}<br>
-          {{ order.completed }}<br>
-          {{ order.paid }}
+          {% if order.completed %}
+            This order is ready!
+          {% else %}
+            Being prepared.
+          {% endif %}<br>
+          {% if order.paid %}
+
+          {% else %}
+            Table {{ order.table_number }} has not yet paid.
+          {% endif %}
           <div class="pull-right">
             {{ order.created }}
           </div>

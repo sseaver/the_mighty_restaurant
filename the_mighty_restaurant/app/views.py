@@ -75,7 +75,7 @@ class ChefOrderView(ListView):
 class OrderCreateView(CreateView):
     model = Order
     success_url = "/"
-    fields = ("item", "table_number", "drink", "notes")
+    form_class = ServerOrderForm
 
     def form_valid(self, form):
         instance = form.save(commit=False)

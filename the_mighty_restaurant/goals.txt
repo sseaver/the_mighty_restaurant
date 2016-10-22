@@ -17,3 +17,11 @@ Classes:
 - Menu Items
     - food/drinks
     - cost
+
+
+Page for owner that shows each order completed in past 24 hours and will show
+the amount of money made per day for past week?
+
+List of drinks?
+
+How to make multiple selections for menu items?
