@@ -73,7 +73,7 @@ class Table(models.Model):
     table_number = models.CharField(max_length=2, choices=TABLE_NUMBERS)
 
     def __str__(self):
-        return self.table_number
+        return str(self.id)
 
     @property
     def is_paid(self):

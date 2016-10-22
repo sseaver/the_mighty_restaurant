@@ -20,7 +20,6 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index_view' %}">Home</a></li>
             <li><a href="{% url 'menu_view' %}">Menu</a></li>
-            <li><a href="{% url 'order_view' %}">orderview</a></li>
             <li><a href="{% url 'table_view' %}">tableview</a></li>
             {% if request.user.is_authenticated %}
                 <li><a href="{% url 'profile_update_view' %}">Change Access Level</a></li>
@@ -28,7 +27,7 @@
                 <li><a href="{% url 'menu_item_create_view' %}">Create Menu Item</a></li>
               {% endif %}
               {% if request.user.profile.is_server %}
-                <li><a href="{% url 'order_create_view' %}">Create Order</a></li>
+                <li><a href="{% url 'table_create_view' %}">Add Table</a></li>
               {% endif %}
               <li><a href="{% url 'logout' %}?next={% url 'index_view' %}">Log out</a></li>
             {% else %}

@@ -74,10 +74,10 @@ class OrderView(ListView):
     def get_queryset(self):
         return Order.objects.filter(completed=False)
 
-    def get_context_data(self, **kwargs):
-        context = super(OrderView, self).get_context_data(**kwargs)
-        context['table'] = Table.objects.all()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(OrderView, self).get_context_data(**kwargs)
+    #     context['table'] = Table.objects.get(id=self.kwargs['pk'])
+    #     return context
 
 
 class OrderCreateView(CreateView):
@@ -88,7 +88,13 @@ class OrderCreateView(CreateView):
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.server = self.request.user
+        instance.table = Table.table_number
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['table'] = Table.objects.get(id=self.kwargs['pk'])
+        return context
 
 
 class OrderUpdateView(UpdateView):
@@ -117,4 +123,4 @@ class TableView(ListView):
 class TableCreateView(CreateView):
     model = Table
     fields = ("table_number",)
-    success_url = "/create_order/"
+    success_url = "/"
