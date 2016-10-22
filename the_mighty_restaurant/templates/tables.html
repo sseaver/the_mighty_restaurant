@@ -7,7 +7,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">#{{ table }} at:{{ table.table_number }}</h3>
+    <h3 class="panel-title">order#{{ table }} at table: {{ table.table_number }}</h3>
   </div>
   <div class="panel-body">
     {% for order in object.order.all  %}
