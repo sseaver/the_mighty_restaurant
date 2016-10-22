@@ -1,6 +1,7 @@
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from datetime import datetime, timedelta
 # Create your models here.
 
 ACCESS_LEVELS = [
@@ -51,15 +52,29 @@ class Order(models.Model):
     server = models.ForeignKey("auth.User")
     item = models.ForeignKey(MenuItem)
     drink = models.CharField(max_length=20)
-    notes = models.TextField()
+    notes = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     table_number = models.IntegerField()
     completed = models.BooleanField(default=False)
-    paid = models.BooleanField(default=False)
+
+    def is_recent(self):
+        hrs24 = datetime.now() - timedelta(days=1)
+        if Order.objects.filter(creation_time__gte=hrs24):
+            return True
+        else:
+            return False
+
+    @property
+    def order_profits(self):
+        return self.item.price
 
     @property
     def is_completed(self):
         return self.completed
+
+
+class Table(models.Model):
+    paid = models.BooleanField(default=False)
 
     @property
     def is_paid(self):
