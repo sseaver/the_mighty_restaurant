@@ -44,4 +44,30 @@
       </div>
     {% endfor %}
   {% endif %}
+  {% if request.user.profile.is_owner %}
+    {% for order in object_list %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ order.item }}</h3>
+      </div>
+      <div class="panel-body">
+        {{ order.table_number }}<br>
+        {{ order.notes }}<br>
+        {% if order.completed %}
+          This order is ready!
+        {% else %}
+          Being prepared.
+        {% endif %}<br>
+        {% if order.paid %}
+
+        {% else %}
+          Table {{ order.table_number }} has not yet paid.
+        {% endif %}
+        <div class="pull-right">
+          {{ order.created }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
 {% endblock %}

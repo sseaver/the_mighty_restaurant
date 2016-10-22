@@ -67,7 +67,7 @@ class MenuItemDeleteView(DeleteView):
         return []
 
 
-class ChefOrderView(ListView):
+class OrderView(ListView):
     template_name = "orders.html"
     model = Order
 
