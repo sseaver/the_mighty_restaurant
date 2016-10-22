@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form class="" action="" method="post">
+    {% csrf_token %}
+    <p>
+      You are about to delete the Menu Item: <strong>{{ object.name }}.</strong> Are you sure?
+    </p>
+    <input class="btn btn-primary" type="submit" value="YES">
+    <a class="btn btn-default" href="{% url 'menu_view' %}">NO</a>
+  </form>
+{% endblock %}

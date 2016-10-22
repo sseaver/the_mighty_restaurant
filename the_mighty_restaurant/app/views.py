@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from app.models import MenuItem, Order, Profile
+from app.forms import ChefOrderForm, ServerOrderForm
 from django.views.generic import CreateView, TemplateView, ListView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import reverse_lazy
@@ -24,10 +25,10 @@ class UserCreateView(CreateView):
     success_url = "profile_view"
 
 
-class ProfileView(UpdateView):
-    template_name = "profile.html"
+class ProfileUpdateView(UpdateView):
+    template_name = "profile_update.html"
     fields = ("access_level",)
-    success_url = reverse_lazy("profile_view")
+    success_url = reverse_lazy("profile_update_view")
 
     def get_object(self):
         return Profile.objects.get(user=self.request.user)
@@ -41,7 +42,7 @@ class MenuView(ListView):
 class MenuItemCreateView(CreateView):
     model = MenuItem
     success_url = "/"
-    fields = ("name", "description")
+    fields = ("name", "description", "price")
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -52,7 +53,23 @@ class MenuItemCreateView(CreateView):
 class MenuItemUpdateView(UpdateView):
     model = MenuItem
     success_url = reverse_lazy("menu_view")
-    fields = ("name", "description")
+    fields = ("name", "description", "price")
+
+
+class MenuItemDeleteView(DeleteView):
+    model = MenuItem
+    template_name = "app/menuitem_delete.html"
+    success_url = reverse_lazy("menu_view")
+
+    def get_queryset(self):
+        if self.request.user.profile.is_owner:
+            return MenuItem.objects.all()
+        return []
+
+
+class ChefOrderView(ListView):
+    template_name = "orders.html"
+    model = Order
 
 
 class OrderCreateView(CreateView):
@@ -68,5 +85,5 @@ class OrderCreateView(CreateView):
 
 class OrderUpdateView(UpdateView):
     model = Order
-    success_url = "/"
-    fields = ("item", "table_number", "drink", "notes")
+    success_url = reverse_lazy("order_view")
+    form_class = ChefOrderForm

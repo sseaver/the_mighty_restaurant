@@ -8,10 +8,18 @@
       </div>
       <div class="panel-body">
         {{ item.description }}
+        {% if request.user.profile.is_owner %}
+        <form class="pull-right" action="{% url 'menu_item_delete_view' item.id %}" method="get">
+          {% csrf_token %}
+          <input class="btn btn-danger" type="submit" value="X">
+        </form>
+        <form class="pull-right" action="{% url 'menu_item_update_view' item.id %}" method="get">
+          {% csrf_token %}
+          <input class="btn btn-default" type="submit" value="Update">
+        </form>
+        {% endif %}
       </div>
     </div>
-  {% if request.user.is_owner %}
-    <a href="{% url 'menu_item_update_view' item.id %}">Update?</a>
-  {% endif %}
+
   {% endfor %}
 {% endblock %}

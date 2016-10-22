@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
     <style media="screen">
       body {
-        color: #ff5f02; background-color:lightgrey;
+        color: #1e9157 ;
+        background-color:darkgrey;
         font-family:sans-serif;
       }
     </style>
@@ -18,15 +19,19 @@
         <div class="container">
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index_view' %}">Home</a></li>
-            <li><a href="{% url 'user_create_view' %}">Create User</a></li>
-              {% if request.user.is_authenticated %}
-                <li><a href="{% url 'profile_view' %}">Change access level</a></li>
-                <li><a href="{% url 'logout' %}?next={% url 'index_view' %}">Log out</a></li>
+            <li><a href="{% url 'menu_view' %}">Menu</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'profile_update_view' %}">Change Access Level</a></li>
+              {% if request.user.profile.is_owner %}
+                <li><a href="{% url 'menu_item_create_view' %}">Create Menu Item</a></li>
               {% endif %}
-                <li><a href="{% url 'menu_view' %}"></a></li>
-              {% if request.user.is_owner %}
-                <li><a href="{% url 'menu_item_create_view' %}"></a></li>
+              {% if request.user.profile.is_server %}
+                <li><a href="{% url 'order_create_view' %}">Create Order</a></li>
               {% endif %}
+              <li><a href="{% url 'logout' %}?next={% url 'index_view' %}">Log out</a></li>
+            {% else %}
+              <li><a href="{% url 'user_create_view' %}">Create User</a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>

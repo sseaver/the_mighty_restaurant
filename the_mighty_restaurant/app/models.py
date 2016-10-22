@@ -37,14 +37,27 @@ def create_user_profile(**kwargs):
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=150)
     price = models.FloatField()
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
     server = models.ForeignKey("auth.User")
-    item = models.ManyToManyField(MenuItem)
+    item = models.ForeignKey(MenuItem)
     drink = models.CharField(max_length=20)
     notes = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     table_number = models.IntegerField()
+    completed = models.BooleanField(default=False)
+    paid = models.BooleanField(default=False)
+
+    @property
+    def is_completed(self):
+        return self.completed
+
+    @property
+    def is_paid(self):
+        return self.paid
