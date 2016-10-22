@@ -71,6 +71,13 @@ class OrderView(ListView):
     template_name = "orders.html"
     model = Order
 
+    def get_queryset(self):
+        return Order.objects.filter(completed=False)
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderView, self).get_context_data(**kwargs)
+        context['table'] = Table.objects.filter(self)
+
 
 class OrderCreateView(CreateView):
     model = Order
@@ -95,3 +102,4 @@ class OwnerView(ListView):
 
 class TableView(CreateView):
     model = Table
+    fields = ("table_number",)

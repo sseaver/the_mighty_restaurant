@@ -11,4 +11,4 @@ class ChefOrderForm(forms.ModelForm):
 class ServerOrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ("item", "table_number", "drink", "notes")
+        fields = ("item", "drink", "notes")

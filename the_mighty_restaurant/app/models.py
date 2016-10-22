@@ -48,13 +48,42 @@ class MenuItem(models.Model):
         return self.name
 
 
+TABLE_NUMBERS = [
+    ('a1', 'a1'),
+    ('a2', 'a2'),
+    ('a3', 'a3'),
+    ('a4', 'a4'),
+    ('b1', 'b1'),
+    ('b2', 'b2'),
+    ('b3', 'b3'),
+    ('b4', 'b4'),
+    ('c1', 'c1'),
+    ('c2', 'c2'),
+    ('c3', 'c3'),
+    ('c4', 'c4'),
+    ('d1', 'd1'),
+    ('d2', 'd2'),
+    ('d3', 'd3'),
+    ('d4', 'd4')
+]
+
+
+class Table(models.Model):
+    paid = models.BooleanField(default=False)
+    table_number = models.CharField(max_length=2, choices=TABLE_NUMBERS)
+
+    @property
+    def is_paid(self):
+        return self.paid
+
+
 class Order(models.Model):
     server = models.ForeignKey("auth.User")
+    table = models.ForeignKey(Table)
     item = models.ForeignKey(MenuItem)
     drink = models.CharField(max_length=20)
     notes = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    table_number = models.IntegerField()
     completed = models.BooleanField(default=False)
 
     def is_recent(self):
@@ -71,11 +100,3 @@ class Order(models.Model):
     @property
     def is_completed(self):
         return self.completed
-
-
-class Table(models.Model):
-    paid = models.BooleanField(default=False)
-
-    @property
-    def is_paid(self):
-        return self.paid
