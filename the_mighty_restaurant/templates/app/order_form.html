@@ -8,4 +8,9 @@
   {{ form.as_p }}
   <input type="submit" name="name" value="Add Order">
 </form>
+
+
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="{% url 'table_view' %}">Done</a></li>
+</ul>
 {% endblock %}

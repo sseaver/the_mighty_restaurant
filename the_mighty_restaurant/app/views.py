@@ -22,7 +22,7 @@ class IndexView(TemplateView):
 class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = "profile_view"
+    success_url = "/"
 
 
 class ProfileUpdateView(UpdateView):
@@ -82,7 +82,7 @@ class OrderView(ListView):
 
 class OrderCreateView(CreateView):
     model = Order
-    success_url = reverse_lazy("table_view")
+    success_url = reverse_lazy("table_view")  # could you fix this url so it leads back to order create? that way you can add multiple orders in a row
     form_class = ServerOrderForm
 
     def form_valid(self, form):
