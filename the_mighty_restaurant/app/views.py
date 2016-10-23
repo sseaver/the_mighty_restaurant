@@ -82,7 +82,7 @@ class OrderView(ListView):
 
 class OrderCreateView(CreateView):
     model = Order
-    success_url = "/"
+    success_url = reverse_lazy("table_view")
     form_class = ServerOrderForm
 
     def form_valid(self, form):
@@ -99,7 +99,7 @@ class OrderCreateView(CreateView):
 
 class OrderUpdateView(UpdateView):
     model = Order
-    success_url = reverse_lazy("order_view")
+    success_url = reverse_lazy("table_view")
     form_class = ChefOrderForm
 
 

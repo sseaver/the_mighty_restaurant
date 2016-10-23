@@ -90,7 +90,7 @@ class Order(models.Model):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.item
+        return str(self.item)
 
     def is_recent(self):
         hrs24 = datetime.now() - timedelta(days=1)
