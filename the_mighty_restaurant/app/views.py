@@ -88,7 +88,7 @@ class OrderCreateView(CreateView):
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.server = self.request.user
-        instance.table = Table.table_number
+        instance.table = Table.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -115,7 +115,7 @@ class TableView(ListView):
         return Table.objects.filter(paid=False)
 
     def get_context_data(self, **kwargs):
-        context = super(TableView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['order'] = Order.objects.all()
         return context
 
