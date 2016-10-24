@@ -31,7 +31,7 @@ How to make multiple selections for menu items?
 RADIO BUTTONS:
 It's great except it's saving the form if you hit add form, but not if you
 hit done. !!Done button on orderform is NOT a submit!!, that's why it is acting confusing.
-I don't know how to keep it working because it is very unclear especailly when
+I don't know how to keep it working because it is very unclear especially when
 in UpdateView. Maybe get rid of button.
 
 
