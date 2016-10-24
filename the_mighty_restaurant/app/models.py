@@ -80,6 +80,9 @@ class Table(models.Model):
         return self.paid
 
 
+BOOL_CHOICES = ((True, "Completed"), (False, "Incomplete"))
+
+
 class Order(models.Model):
     server = models.ForeignKey("auth.User")
     table = models.ForeignKey(Table)
@@ -87,7 +90,7 @@ class Order(models.Model):
     drink = models.CharField(max_length=20)
     notes = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    completed = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False, choices=BOOL_CHOICES)
 
     def __str__(self):
         return str(self.item)

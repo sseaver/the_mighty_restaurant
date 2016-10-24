@@ -67,9 +67,10 @@ class MenuItemDeleteView(DeleteView):
         return []
 
 
-class OrderView(ListView):
+class OrderView(UpdateView):
     template_name = "orders.html"
     model = Order
+    form_class = ChefOrderForm
 
     def get_queryset(self):
         return Order.objects.filter(completed=False)
@@ -82,7 +83,7 @@ class OrderView(ListView):
 
 class OrderCreateView(CreateView):
     model = Order
-    success_url = reverse_lazy("table_view")  # could you fix this url so it leads back to order create? that way you can add multiple orders in a row
+    success_url = reverse_lazy("order_create_view")
     form_class = ServerOrderForm
 
     def form_valid(self, form):
@@ -91,10 +92,13 @@ class OrderCreateView(CreateView):
         instance.table = Table.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['table'] = Table.objects.get(id=self.kwargs['pk'])
-        return context
+    def get_object(self):
+        return Table.objects.get(id=Table.id)
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['table'] = Table.objects.get(id=self.kwargs['pk'])
+    #     return context
 
 
 class OrderUpdateView(UpdateView):
