@@ -4,9 +4,9 @@
   {% for table in object_list %}
 
   <ul class="nav nav-pills">
-  <a href="{% url 'order_create_view' table.id %}">Add Order</a>
-</ul>
-
+   <li role="presentation">    <a href="{% url 'order_create_view' table.id %}">Add Order</a>
+  </li>
+  </ul>
 
     <div class="panel panel-default">
 
@@ -25,15 +25,16 @@
           {{ order_instance.drink }}
           <br>
           {{ order_instance.notes }}<br>
-          {{ order_instance.completed }}
+
+
           {% if order_instance.completed %}
-          <h3>
-          COMPLETE
-        </h3>
-          {% else %}
-          <h3 style="color: red">NOT READY</h3>
-          {% endif %}
-          <hr>
+              <h3>
+              COMPLETE
+            </h3>
+              {% else %}
+              <h3 style="color: red">NOT READY</h3>
+            {% endif %}
+            <hr>
               {% if request.user.profile.is_chef %}
           <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="{% url 'order_update_view' order_instance.id %}">Update</a></li>
@@ -49,7 +50,10 @@
         </div>
         <div class="panel-footer">
 
-          <a href="{% url 'order_create_view' table.id %}">Add Order</a>
+<ul class="nav nav-pills">
+ <li role="presentation">    <a href="{% url 'order_create_view' table.id %}">Add Order</a>
+</li>
+</ul>
 
         </div>
 
