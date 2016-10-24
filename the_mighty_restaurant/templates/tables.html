@@ -2,7 +2,11 @@
 {% block content %}
 
   {% for table in object_list %}
-    <a href="{% url 'order_create_view' table.id %}">Add Order</a>
+
+  <ul class="nav nav-pills">
+  <a href="{% url 'order_create_view' table.id %}">Add Order</a>
+</ul>
+
 
     <div class="panel panel-default">
 
