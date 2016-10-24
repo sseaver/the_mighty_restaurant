@@ -23,11 +23,11 @@
           {{ order_instance.notes }}<br>
           {{ order_instance.completed }}
           {% if order_instance.completed %}
-          <h3 style="color:red">
+          <h3>
           COMPLETE
         </h3>
           {% else %}
-          <h3 style="color: red"></h3>
+          <h3 style="color: red">NOT READY</h3>
           {% endif %}
           <hr>
               {% if request.user.profile.is_chef %}
