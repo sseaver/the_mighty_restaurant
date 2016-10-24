@@ -17,7 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from app.views import IndexView, UserCreateView, ProfileUpdateView, OrderCreateView,  \
                       MenuItemCreateView, OrderUpdateView, MenuItemUpdateView, \
-                      MenuView, MenuItemDeleteView, OrderView, TableView, TableCreateView
+                      MenuView, MenuItemDeleteView, OrderView, TableView, TableCreateView, \
+                      OwnerView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -33,5 +34,6 @@ urlpatterns = [
     url(r'^menu_item/(?P<pk>\d+)/update/$', MenuItemUpdateView.as_view(), name="menu_item_update_view"),
     url(r'^menu_item/(?P<pk>\d+)/delete/$', MenuItemDeleteView.as_view(), name="menu_item_delete_view"),
     url(r'^tables/$', TableView.as_view(), name="table_view"),
-    url(r'^create_table/$', TableCreateView.as_view(), name="table_create_view")
+    url(r'^create_table/$', TableCreateView.as_view(), name="table_create_view"),
+    url(r'^owner/$', OwnerView.as_view(), name="owner_view")
 ]

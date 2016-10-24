@@ -2,6 +2,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from datetime import datetime, timedelta
+from django.db.models import Sum
 # Create your models here.
 
 ACCESS_LEVELS = [
@@ -105,6 +106,10 @@ class Order(models.Model):
     @property
     def order_profits(self):
         return self.item.price
+
+    @property
+    def daily_total(self):
+        return Order.objects.filter(table=self.id).aggregate(Sum('item.price'))
 
     @property
     def is_completed(self):

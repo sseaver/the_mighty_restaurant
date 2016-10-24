@@ -13,6 +13,7 @@
         <div class="panel-body">
           {% for order_instance in order %}
           {% if order_instance.table == table %}
+          {% if not order_instance.is_completed %}
           <div class="pull-right">
             <font size="1">{{ order_instance.created }}</font>
           </div>
@@ -33,9 +34,9 @@
           <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="{% url 'order_update_view' order_instance.id %}">Update</a></li>
           </ul>
-                  {% endif %}
+              {% endif %}
           <hr>
-
+          {% endif %}
           {% endif %}
           {% endfor %}
 

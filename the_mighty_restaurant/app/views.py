@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from app.models import MenuItem, Order, Profile, Table
 from app.forms import ChefOrderForm, ServerOrderForm
-from django.views.generic import CreateView, TemplateView, ListView
+from django.views.generic import CreateView, TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -107,10 +107,6 @@ class OrderUpdateView(UpdateView):
     form_class = ChefOrderForm
 
 
-class OwnerView(ListView):
-    model = Order
-
-
 class TableView(ListView):
     model = Table
     template_name = "tables.html"
@@ -128,3 +124,8 @@ class TableCreateView(CreateView):
     model = Table
     fields = ("table_number",)
     success_url = "/"
+
+
+class OwnerView(ListView):
+    model = Order
+    template_name = "owner.html"

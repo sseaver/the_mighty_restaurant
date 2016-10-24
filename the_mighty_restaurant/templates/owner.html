@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user.profile.is_owner %}
+  {% for order in object_list %}
+      {{ order.order_profits }}
+
+
+  {% endfor %}
+{% else %}
+YOU CANNOT BE HERE!
+{% endif %}
+{% endblock %}
