@@ -17,7 +17,8 @@ class Profile(models.Model):
     access_level = models.CharField(max_length=1, choices=ACCESS_LEVELS)
 
     def __str__(self):
-        return self.access_level
+        return str(self.user)
+        # return self.access_level
 
     @property
     def is_owner(self):
