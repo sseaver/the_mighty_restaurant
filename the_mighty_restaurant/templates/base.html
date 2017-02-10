@@ -39,7 +39,15 @@
 
 <h1>The Mighty Restaurant</h1>
 {% if request.user.is_authenticated %}
-<h3>{{ request.user }}:  {{ request.user.profile }}</h3>
+<h3>{{ request.user }}:
+{% if request.user.profile.access_level == 'o' %}
+  Owner
+{% elif request.user.profile.access_level == 's' %}
+  Server
+{% elif request.user.proofile.access_level == 'c' %}
+  Chef
+{% endif %}
+</h3>
 
 {% endif %}
 {% block content %}
