@@ -6,9 +6,9 @@ class ChefOrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ("completed",)
-        widgets = {
-            'completed': forms.RadioSelect
-        }
+        # widgets = {
+        #     'completed': forms.RadioSelect
+        # }
 
 
 class ServerOrderForm(forms.ModelForm):
